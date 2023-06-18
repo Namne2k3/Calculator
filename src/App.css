@@ -67,8 +67,9 @@ html , body {
   font-size: 2rem;
   text-align: right;
 }
-#numpad {
-  
+#logo_namne {
+  font-size: 2rem;
+  width: 2rem;
 }
 #clear {
   width: 50%;

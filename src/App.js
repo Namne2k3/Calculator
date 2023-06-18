@@ -12,7 +12,7 @@
 
     const handleClickNumPad = (e) => {
       console.log(e.target.value)
-      console.log(calculate)
+      // console.log(calculate)
       setInput(e.target.value)
       setCalculate([...calculate].concat(e.target.value));
       setOperator(false); 
@@ -25,14 +25,73 @@
       }
     } 
     
-    const handleClickEqual = (e) => {
+    // const handleClickEqual = (e) => {
+    //   let arrOperator = [];
+    //   const numbers = [ ];
+    //   const regexOpe = /^(\+|-|\*|\/|=|>|<|>=|<=|&|\||%|!|\^|\(|\))$/ ;
+    //   const regexNum = /^[.?\d]+$/;
+
+    //   console.log(calculate)
+
+    //   let newArrNum = '';
+    //   for ( let i = 0 ; i < calculate.length ; i ++ ) {
+    //     if ( calculate[i].match(regexNum) ) {
+    //       newArrNum += calculate[i] ;
+    //     } 
+    //     if ( i === calculate.length - 1 ) {
+    //       numbers.push(newArrNum);
+
+    //     }
+    //     if ( calculate[i].match(regexOpe)) {
+    //         arrOperator.push(calculate[i])
+    //         numbers.push(newArrNum)
+    //         newArrNum = '';
+    //     }
+    //   }
+    //   console.log(numbers)
+    //   console.log(arrOperator)
+
+    //   while ( arrOperator.length !== 0 ) {
+    //     switch( arrOperator[0] ) {
+    //       case "+":
+    //         numbers[1] = Number(numbers[0]) + Number(numbers[1]); 
+    //         numbers.shift() ;
+    //         arrOperator.shift() ;
+    //         setResult(numbers[0])
+    //         break;
+    //       case "-":
+    //         numbers[1] = Number(numbers[0]) - Number(numbers[1]); 
+    //         numbers.shift() ;
+    //         arrOperator.shift() ;
+    //         setResult(numbers[0])
+    //         break;
+    //       case "*":
+    //         numbers[1] = Number(numbers[0]) * Number(numbers[1]); 
+    //         numbers.shift() ;
+    //         arrOperator.shift() ;
+    //         setResult(numbers[0])
+    //         break;
+    //       case "/":
+    //         numbers[1] = Number(numbers[0]) / Number(numbers[1]); 
+    //         numbers.shift() ;
+    //         arrOperator.shift() ;
+    //         setResult(numbers[0])
+    //         break;
+    //       default:
+    //         break ;
+    //     }
+    //   }
+    // }
+
+    const handleClickEqual = () => {
       let arrOperator = [];
-      const numbers = [ ];
+      const numbers = [];
       const regexOpe = /^(\+|-|\*|\/|=|>|<|>=|<=|&|\||%|!|\^|\(|\))$/ ;
-      const regexNum = /^[.?\d]+$/;
+      const regexNum = /^[.?\d]+$/ ;
+      const regexMulDiv = /\*|\//;
 
       console.log(calculate)
-
+      
       let newArrNum = '';
       for ( let i = 0 ; i < calculate.length ; i ++ ) {
         if ( calculate[i].match(regexNum) ) {
@@ -48,9 +107,28 @@
             newArrNum = '';
         }
       }
-      console.log(numbers)
+      if ( arrOperator.includes('*') || arrOperator.includes('/') ) {
+        for ( let index = 0 ; index < arrOperator.length ; index ++ ) {
+          if ( regexMulDiv.test(arrOperator[index]) ) {
+            switch(arrOperator[index]) {
+              case "*":
+                numbers[index] = Number(numbers[index]) * Number(numbers[index+1]);
+                numbers.splice(numbers.indexOf(numbers[index+1]),1);
+                arrOperator.splice(arrOperator.indexOf(arrOperator[index]),1)
+                break ;
+              case "/":
+                numbers[index] = Number(numbers[index]) / Number(numbers[index+1]);
+                numbers.splice(numbers.indexOf(numbers[index+1]),1);
+                arrOperator.splice(arrOperator.indexOf(arrOperator[index]),1)
+                break ;
+              default:
+                break ;
+            }
+          }
+        }
+      }
       console.log(arrOperator)
-
+      console.log(numbers);
       while ( arrOperator.length !== 0 ) {
         switch( arrOperator[0] ) {
           case "+":
@@ -81,10 +159,13 @@
             break ;
         }
       }
+      if ( arrOperator.length === 0 ) {
+        setResult(numbers[0])
+      }
     }
 
     const handleReset = () => {
-      setInput('0');
+      setInput('');
       setCalculate('');
       setResult('')
     }
@@ -139,7 +220,9 @@
             Learn React
           </a>
         </header> */}
-        <h3>Created by Namne</h3>
+        <h3>
+          Created by Namne 
+        </h3>
         <Calculator />
 
       </div>
