@@ -116,8 +116,8 @@
     }
 
     const handleReset = () => {
-      setInput('');
-      setCalculate('');
+      setInput();
+      setCalculate([]);
       setResult('')
     }
 
