@@ -14,6 +14,7 @@
 }
 html , body {
   background-color: rgb(91, 72, 72);
+  width: 100%;
 }
 .App-header {
   background-color: #282c34;
@@ -40,12 +41,13 @@ html , body {
 }
 #calculator {
   background-color: black;
-  width: 400px;
   height: 500px;
-  margin:7rem auto ;
+  margin:4rem auto ;
   padding: 6px;
   border-radius: 10px;
   border: 2px solid #867777;
+  width: 90%;
+  max-width: 600px;
 }
 #display {
   display: flex;
@@ -75,9 +77,7 @@ html , body {
   width: 50%;
   background-color: rgb(214, 88, 88);
 }
-#zero {
-  /* width: 50%; */
-}
+
 button {
   color: white;
   background-color: grey;
@@ -87,10 +87,76 @@ button {
   position: relative;
   cursor: pointer;
 }
-#decimal , #equals {
+#decimal {
+  width: 25%;
+}
+#equals {
+  width: 25%;
+}
+#def {
   width: 50%;
 }
 button:hover {
   outline: 1px solid #fff;
   color: #000!important;
+}
+.numpad {
+  background-color: #6ea4ad;
+}
+.operator {
+  background-color: #c5af7b;
+}
+#equals {
+  background-color: rgb(110, 164, 110);
+}
+#def {
+  background-color: #b78b9e;
+}
+#decimal {
+  background-color: #d09689;
+}
+#author {
+  font-style: italic;
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  text-decoration: none;
+  background-color: #3e3434;
+  color: #94d4b6;
+  border-radius: 10px;
+  margin: 25px;
+  padding: 16px;
+  opacity: 0.8;
+
+}
+#author h1 {
+  text-decoration: underline;
+}
+#socials {
+  display: flex;
+}
+.social {
+  margin-top: 8px;
+}
+.social a {
+  display: flex;
+  flex-direction: column;
+  font-size: 1.3rem;
+  text-decoration: none;
+  color: #afb4d4;
+}
+h1 {
+  margin: 0;
+}
+#info {
+  margin-top: 15px;
+  display: flex;
+  justify-content: space-around;
+}
+#logo_fb {
+  text-decoration: none;
+  font-size: 1.5rem;
+}
+@media only screen and (max-width: 300px) {
+  #info {
+    flex-direction: column;
+  }
 }
